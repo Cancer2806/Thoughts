@@ -1,0 +1,27 @@
+{
+  "name": "thoughts",
+  "version": "1.0.0",
+  "description": "A social networking backend in MongoDB where users can share their thoughts and reactions",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "seed": "node utils/seed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cancer2806/Thoughts.git"
+  },
+  "keywords": [],
+  "author": "Frank Lavery",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Cancer2806/Thoughts/issues"
+  },
+  "homepage": "https://github.com/Cancer2806/Thoughts#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.4.0"
+  }
+}
