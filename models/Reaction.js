@@ -1,6 +1,4 @@
-// Define Reactions model schema - sub Document of Thoughts
-
-const { setTheUsername } = require("whatwg-url")
+// File to define the reaction sub-document (of Thoughts)
 
 // Import Mongoose
 const { Schema, Types } = require('mongoose');
@@ -24,13 +22,13 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      // create getter to format timestamp on query
+      //TODO create getter to format timestamp on query
     },
   },
-    {
+  {
     toJSON: {
       getters: true,
-    },
+  },
     id: false,
   }
 );

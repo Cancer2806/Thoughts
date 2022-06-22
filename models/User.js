@@ -1,3 +1,5 @@
+// File to define the User Model
+
 // Import Mongoose
 const { Schema, model } = require('mongoose');
 
@@ -14,15 +16,15 @@ const userSchema = new Schema(
       type: String,
       unique: true,
       required: true,
-      // need to validate as an email
+      //TODO need to validate as an email
     },
 
-
+// links to thoughts via id
     thoughts: [{
       type: Schema.Types.ObjectId,
       ref: 'Thought',
     },],
-
+// self-links to users via id
     friends: [{
       type: Schema.Types.ObjectId,
       ref: 'User',
@@ -34,11 +36,10 @@ const userSchema = new Schema(
     },
     id: false,
   }
+    // TODO create a virtual called friendCount that retrieves the lenght of the user's friends array
 ); 
 
+// Create the collection
 const User = model('user', userSchema);
 
 module.exports = User;
-
-
-

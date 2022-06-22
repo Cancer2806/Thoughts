@@ -1,3 +1,4 @@
+// Database connection file.  Provides environment variable for future deployment
 
 // Import Mongoose as ODM
 const { connect, connection } = require('mongoose');
