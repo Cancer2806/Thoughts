@@ -9,8 +9,8 @@ const thoughtsSchema = new Schema(
     thoughtText: {
       type: String,
       required: true,
-      min_length: 1,
-      max_length: 280,
+      minlength: 1,
+      maxlength: 280,
     },
     createdAt: {
       type: Date,
@@ -29,8 +29,12 @@ const thoughtsSchema = new Schema(
       virtuals: true,
     },
   }
-  // TODO create a virtual called reactionCount that retrieves the length of the thought's reactions array
-);
+  );
+  
+//create a virtual called reactionCount that retrieves the length of the thought's reactions array
+thoughtsSchema.virtual('reactionCount').get(function () {
+  return this.reactions.length;
+});
 
 // Define collection
 const Thought = model('thought', thoughtsSchema);
