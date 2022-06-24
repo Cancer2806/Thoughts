@@ -3,6 +3,8 @@
 // Import mongoose and sub-document
 const { Schema, model } = require('mongoose');
 const reactionSchema = require('./Reaction');
+const formatDate = require('../utils/date');
+
 
 const thoughtsSchema = new Schema(
   {
@@ -15,7 +17,9 @@ const thoughtsSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now(),
-      // TODO getter to format timestamp on query
+    
+      //getter to format timestamp on query
+      get: (createdAt) => formatDate(createdAt),
     },
     username: {
       type: String,

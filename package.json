@@ -22,6 +22,7 @@
   "homepage": "https://github.com/Cancer2806/Thoughts#readme",
   "dependencies": {
     "express": "^4.18.1",
+    "moment": "^2.29.3",
     "mongoose": "^6.4.0"
   }
 }

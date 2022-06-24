@@ -1,7 +1,9 @@
 // File to define the reaction sub-document (of Thoughts)
 
-// Import Mongoose
+// Import Mongoose and date format function
 const { Schema, Types } = require('mongoose');
+const formatDate = require('../utils/date');
+
 
 // Define model Schema
 const reactionSchema = new Schema(
@@ -22,7 +24,9 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      //TODO create getter to format timestamp on query
+      
+      //getter to format timestamp on query
+      get: (createdAt) => formatDate(createdAt),
     },
   },
   {

@@ -22,6 +22,7 @@ const userSchema = new Schema(
       type: String,
       unique: true,
       required: true,
+      lowercase: true,
       //validate the email
       validate: [validateEmail, "Please provide a valid email address"],
       match: [
