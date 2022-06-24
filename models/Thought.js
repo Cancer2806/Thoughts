@@ -3,7 +3,7 @@
 // Import mongoose and sub-document
 const { Schema, model } = require('mongoose');
 const reactionSchema = require('./Reaction');
-const formatDate = require('../utils/date');
+const { formatDate } = require('../utils/helpers');
 
 
 const thoughtsSchema = new Schema(

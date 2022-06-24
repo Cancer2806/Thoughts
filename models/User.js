@@ -2,12 +2,8 @@
 
 // Import Mongoose
 const { Schema, model } = require('mongoose');
+const {validateEmail} = require('../utils/helpers.js')
 
-// function to validate email using regex
-const validateEmail = (email) => {
-  const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  return regex.test(email);
-};
 
 // Schema for User model
 const userSchema = new Schema(

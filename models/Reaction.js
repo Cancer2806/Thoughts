@@ -2,7 +2,7 @@
 
 // Import Mongoose and date format function
 const { Schema, Types } = require('mongoose');
-const formatDate = require('../utils/date');
+const formatDate = require('../utils/helpers');
 
 
 // Define model Schema
