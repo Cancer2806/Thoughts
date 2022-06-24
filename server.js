@@ -2,7 +2,6 @@
 const express = require('express');
 const db = require('./config/connection');
 const routes = require('./routes');
-const cwd = process.cwd();
 
 // Define ports
 const PORT = process.env.port || 3001;
@@ -15,7 +14,5 @@ app.use(routes);
 
 // start Server
 db.once('open', () => {
-  app.listen(PORT, () => {
-    console.log(`API server running on port ${PORT}`);
-  });
+  app.listen(PORT, () => {console.log(`API server running on port ${PORT}`);});
 });
