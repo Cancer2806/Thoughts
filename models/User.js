@@ -2,7 +2,7 @@
 
 // Import Mongoose
 const { Schema, model } = require('mongoose');
-const {validateEmail} = require('../utils/helpers.js')
+const { validateEmail } = require('../utils/validators.js')
 
 
 // Schema for User model
@@ -30,19 +30,19 @@ const userSchema = new Schema(
 // links to thoughts via id
     thoughts: [{
       type: Schema.Types.ObjectId,
-      ref: 'Thought',
+      ref: 'thought',
     }],
 // self-links to users via id
     friends: [{
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: 'user',
     }],
   },
   {
     toJSON: {
       virtuals: true,
     },
-    id: false,
+    id: true,
   }
   ); 
   

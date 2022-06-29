@@ -1,23 +1,38 @@
-// file with routes to use for User CRUD operations
+// file with routes for User CRUD operations
 
 // Use express for routers
 const router = require('express').Router();
 
 // import controller functions
+
 const {
   getUsers,
-  updateUser,
+  getSingleUser,
   createUser,
   deleteUser,
+  updateUser,
+  // addFriend,
+  // removeFriend
 } = require('../../controllers/userController');
 
 // /api/users
-router.route('/').get(getUsers).post(createUser);
+router.route('/')
+  .get(getUsers)
+  .post(createUser);
+
 
 // /api/users/:userId
-router.route('/:id').put(updateUser).delete(deleteUser);
+router.route('/:userId')
+  .get(getSingleUser)
+  .put(updateUser)
+  .delete(deleteUser);
 
+// add friend 
+// router.route('/:userId/user')
+//   .post(addFriend);
 
-
+// remove friend 
+// router.route('/:id/user/:userid')
+//   .delete(removeFriend);
 
 module.exports = router;

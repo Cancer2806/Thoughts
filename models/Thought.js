@@ -3,7 +3,7 @@
 // Import mongoose and sub-document
 const { Schema, model } = require('mongoose');
 const reactionSchema = require('./Reaction');
-const { formatDate } = require('../utils/helpers');
+const { formatDate } = require('../utils/dates');
 
 
 const thoughtsSchema = new Schema(
@@ -32,6 +32,7 @@ const thoughtsSchema = new Schema(
       getters: true,
       virtuals: true,
     },
+    id: true,
   }
   );
   
