@@ -58,7 +58,7 @@ const deleteThought = (req, res) => {
 // Add a Reaction
 // POST /api/thoughts/:thoughtId/reactions
 const addReaction = (req, res) => {
-  console.log(`adding a reaction ${req.body}`);
+  // console.log(`adding a reaction ${req.body}`);
   Thought.findOneAndUpdate(
     { _id: req.params.thoughtId },
     { $addToSet: { reactions: req.body } },
