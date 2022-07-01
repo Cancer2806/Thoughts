@@ -1,4 +1,5 @@
-// controller file for thought model
+// controller file for thought routes
+// Import models
 const { Thought, User } = require("../models");
 
 
@@ -8,6 +9,19 @@ const getThoughts = (req, res) => {
   Thought.find()
     .then((thoughts) => { res.json(thoughts) })
     .catch((err) => { console.error(err); res.status(500).json(err) });
+};
+
+
+// Get single thought
+// GET  api/thoughts/:thoughtid
+const getSingleThought = (req, res) => {
+  Thought.findOne({ _id: req.params.thoughtId })
+    .select('-__v')
+    .then((thoughtData) => {
+      !thoughtData ? res.status(404).json({ message: 'Those thoughts do not exist' })
+        : res.json(thoughtData);
+    })
+    .catch((err) => { console.error(err); res.status(500).json(err) })
 };
 
 
@@ -30,17 +44,29 @@ const createThought = (req, res) => {
 };
 
 
-// Get single thought
-// GET  api/thoughts/:thoughtid
-const getSingleThought = (req, res) => {
-  Thought.findOne({ _id: req.params.thoughtId })
-    .select('-__v')
+// update a thought
+// PUT api/thoughts/:thoughtId
+const updateThought = (req, res) => {
+  Thought.findOneAndUpdate(
+    { _id: req.params.thoughtId },
+    { $set: req.body, },
+    {
+      runValidators: true,
+      new: true,
+    })
+    .then((thought) => {
+      return User.findOneAndUpdate(
+        { username: req.body.username },
+        { $addToSet: { thoughts: thought._id } },
+        { new: true }
+      );
+    })
     .then((thoughtData) => {
-      !thoughtData ? res.status(404).json({ message: 'Those thoughts do not exist' })
-      : res.json(thoughtData);
+      !thoughtData ? res.status(404).json({ message: 'That thought cannot be found' })
+        : res.json(thoughtData);
     })
     .catch((err) => { console.error(err); res.status(500).json(err) })
-};
+}
 
 
 // Delete a thought
@@ -50,7 +76,7 @@ const deleteThought = (req, res) => {
     .then((thoughtData) => {
       !thoughtData ? res.status(404).json({ message: 'That thought does not exist' })
         : res.json({ message: `That thought ${req.params.thoughtId} no longer exists` })
-      })
+    })
     .catch((err) => { console.error(err); res.status(500).json(err) })
 };
 
@@ -65,7 +91,7 @@ const addReaction = (req, res) => {
     { runValidators: true, new: true }
   )
     .then((thoughtData) =>
-      !thoughtData  ? res.status(404).json({ message: `No thought exists with that ${thoughtId}` })
+      !thoughtData ? res.status(404).json({ message: `No thought exists with that ${thoughtId}` })
         : res.json(thoughtData)
     )
     .catch((err) => { console.error(err); res.status(500).json(err) })
@@ -92,6 +118,7 @@ module.exports = {
   getThoughts,
   getSingleThought,
   createThought,
+  updateThought,
   deleteThought,
   addReaction,
   deleteReaction

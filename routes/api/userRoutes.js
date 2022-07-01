@@ -4,7 +4,6 @@
 const router = require('express').Router();
 
 // import controller functions
-
 const {
   getUsers,
   getSingleUser,
@@ -14,6 +13,7 @@ const {
   addFriend,
   removeFriend
 } = require('../../controllers/userController');
+
 
 // /api/users
 router.route('/')
