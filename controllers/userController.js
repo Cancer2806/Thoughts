@@ -118,6 +118,47 @@ const deleteUser = (req, res) => {
   })
 }
 
+// add a Friend
+// POST /api/users/:username/friends/:friendId
+const addFriend = (req, res) => {
+  User.findOneAndUpdate(
+    { username: req.params.username },
+    { $addToSet: { friends: req.params.friendId } },
+    { new: true }
+  )
+    .then((userData) => {
+      if (!userData) {
+        return res.status(404).json({ message: `Cannot find username ${req.params.username}` });
+      }
+      res.json(userData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+}
+
+
+// Remove a Friend
+// DELETE /api/users/:username/friends/:friendId
+const removeFriend = (req, res) => {
+  User.findOneAndUpdate(
+    { username: req.params.username },
+    { $pull: { friends: req.params.friendId } },
+    { new: true }
+  )
+    .then((userData) => {
+      if (!userData) {
+        return res.status(404).json({ message: `Cannot find username ${req.params.username}` });
+      }
+      res.json(userData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+}
+
 // export Controller functions
 module.exports = {
   getUsers,
@@ -125,6 +166,6 @@ module.exports = {
   updateUser,
   createUser, 
   deleteUser,
-  // addFriend,
-  // removeFriend
+  addFriend,
+  removeFriend
 };
