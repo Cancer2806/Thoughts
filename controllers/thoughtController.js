@@ -54,13 +54,6 @@ const updateThought = (req, res) => {
       runValidators: true,
       new: true,
     })
-    .then((thought) => {
-      return User.findOneAndUpdate(
-        { username: req.body.username },
-        { $addToSet: { thoughts: thought._id } },
-        { new: true }
-      );
-    })
     .then((thoughtData) => {
       !thoughtData ? res.status(404).json({ message: 'That thought cannot be found' })
         : res.json(thoughtData);
