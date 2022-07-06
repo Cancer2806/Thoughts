@@ -30,7 +30,11 @@ The project uses a MongoDB database, with the ODM Mongoose, to create the backen
 
 <br>
 
-  A video walkthrough of the routes in action can be found at: 
+  A video walkthrough (in two parts due to lenght) of the routes in action can be found at:    
+  
+  Part 1:  https://drive.google.com/file/d/1FjsVYpM9XzY-RCi32HtT6JR_qwj5MFu1/view?usp=sharing   
+  Part 2:  https://drive.google.com/file/d/1r4ajjS4zhRQSBMfDG8dt36-du1DjGkAl/view?usp=sharing
+  
 
 <br>
 
